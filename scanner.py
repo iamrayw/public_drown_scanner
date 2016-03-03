@@ -18,6 +18,7 @@ import os
 file_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(file_dir + "/scapy-ssl_tls/")
 
+import csv
 import logging
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 import scapy
@@ -330,14 +331,16 @@ def sslv2_connect(ip, port, protocol, cipher_suite, result_additional_data):
     return "%s:%s" % (VULN, base64.b64encode(public_key.exportKey(format='DER')))
 
 if __name__ == '__main__':
-    if len(sys.argv) < 3:
-        sys.exit('Usage: %s <hostname> <port> [-esmtp|-imap|-pop3|-bare]' % sys.argv[0])
-
-    ip = sys.argv[1]
-    port = int(sys.argv[2])
-    scan_id = os.getcwd()
-    dtime = datetime.datetime.now()
-    print 'Testing %s on port %s' % (ip, port)
+#    if len(sys.argv) < 3:
+#        sys.exit('Usage: %s <hostname> <port> [-esmtp|-imap|-pop3|-bare]' % sys.argv[0])
+    with open ('ip.csv'), 'rb') as csvfile:
+        reader - csv.reader(csvfile)
+        for row in reader:
+            ip = row[0]
+            port = 443
+            scan_id = os.getcwd()
+            dtime = datetime.datetime.now()
+            print 'Testing %s on port %s' % (ip, port)
 
     protocol = Protocol.BARE_SSLv2
     if len(sys.argv) >= 4:
