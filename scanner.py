@@ -1,4 +1,9 @@
 #!/usr/bin/env python2
+#useage:
+#Create CSV = ip.csv
+#Create Ouput file = ip.txt
+#Run Command:
+#./scanner.py
 
 import sys
 from enum import Enum
@@ -375,6 +380,8 @@ if __name__ == '__main__':
                 else:
                     cve_string += " and CVE-2016-0703"
 
-            print '%s: Server is vulnerable%s, with cipher %s\n' % (ip, cve_string, string_description)
+            with open ("ip.txt", "a") as f:
+                f.write ('%s: Server is vulnerable%s, with cipher %s\n' % (ip, cve_string, string_description))
         else:
-            print '%s: Server is NOT vulnerable with cipher %s, Message: %s\n' % (ip, string_description, ret)
+            with open (ip.txt, "a") as f:
+                f.write('%s: Server is NOT vulnerable with cipher %s, Message: %s\n' % (ip, string_description, ret))
